@@ -1,6 +1,28 @@
 #!/bin/bash
 
-cp SAMPLE.md build/README.md
+if [ -z "$1" ]; then
+  echo "Usage: render <path-to-readme>"
+  exit 1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "File not found: $1"
+  exit 1
+fi
+
+if ! command -v gh &> /dev/null; then
+  echo "gh is not installed. Please install it from https://cli.github.com/"
+  exit 1
+fi
+
+if ! command -v firefox &> /dev/null; then
+  echo "firefox is not installed. Please install it from https://www.mozilla.org/en-US/firefox/new/"
+  exit 1
+fi
+
+mkdir -p build
+
+cp "$1" build/README.md
 
 (
 cat <<EOF
