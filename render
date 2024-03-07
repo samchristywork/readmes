@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cp SAMPLE.md build/README.md
+
+(
+cat <<EOF
+<!doctype html>
+<html>
+<head>
+  <title>README - Generated</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div class="main">
+EOF
+
+gh api \
+  --method POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /markdown \
+  -f text="$(cat build/README.md)"
+
+cat <<EOF
+  </div>
+</body>
+EOF
+) > build/index.html
+
+firefox build/index.html
