@@ -20,10 +20,6 @@ if ! command -v firefox &> /dev/null; then
   exit 1
 fi
 
-mkdir -p build
-
-cp "$1" build/README.md
-
 (
 cat <<EOF
 <!doctype html>
@@ -56,12 +52,12 @@ gh api \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   /markdown \
-  -f text="$(cat build/README.md)"
+  -f text="$(cat "$1")"
 
 cat <<EOF
   </div>
 </body>
 EOF
-) > build/index.html
+) > GENERATED_README.html
 
-firefox build/index.html
+firefox GENERATED_README.html
