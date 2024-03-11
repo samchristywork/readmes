@@ -3,14 +3,11 @@ TODO
 
 ## Overview
 
-TODO
-
-## Screenshots
-
-TODO
 <p align="center">
-  <img src="./res/screenshot.png" />
+  <img src="./assets/screenshot.png" width=500 />
 </p>
+
+TODO
 
 ## Features
 
@@ -24,6 +21,8 @@ TODO
 - TODO
 - TODO
 - TODO
+
+## Theory of Operation
 
 ## Setup
 
@@ -39,15 +38,17 @@ TODO
 
 TODO
 
-## Limitations
-
-TODO
-
 ## Dependencies
 
 ```
 TODO
 ```
+
+## Implementation Details
+
+## Limitations
+
+TODO
 
 ## Credits
 
