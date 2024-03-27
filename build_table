@@ -13,14 +13,27 @@ function check_for_file() {
   fi
 }
 
+function check_banner() {
+  local repo
+  repo="$1"
+  if ! curl "https://raw.githubusercontent.com/samchristywork/$repo/main/README.md" \
+    -s -f | grep -q "s-christy.com.sbs.status-banner.svg"; then
+    printf "| "
+  else
+    printf "|X"
+  fi
+}
+
 (
-echo "Name|README.md|CONTRIBUTING.md"
-echo "----|---------|---------------"
+echo "Name|README.md|CONTRIBUTING.md|LICENSE|Banner"
+echo "----|---------|---------------|-------|------"
 
 while read -r repo; do
   printf "$repo"
   check_for_file "$repo" "README.md"
   check_for_file "$repo" "CONTRIBUTING.md"
+  check_for_file "$repo" "LICENSE"
+  check_banner "$repo"
   echo
   sleep 1
 done
